@@ -1,0 +1,75 @@
+--- origsrc/Luach/mainwindow.cpp	2010-06-07 04:41:33.276028400 -0500
++++ src/Luach/mainwindow.cpp	2010-06-07 05:21:06.979796500 -0500
+@@ -156,6 +156,7 @@ MainWindow::MainWindow(QWidget *parent)
+     connect(ui->translateaction, SIGNAL(triggered()), this, SLOT(translateAction()));
+     connect(ui->aboutaction, SIGNAL(triggered()), this, SLOT(aboutForm()));
+     connect(ui->printaction, SIGNAL(triggered()), this, SLOT(printSnap()));
++    connect(ui->todayaction, SIGNAL(triggered()), this, SLOT(todayAction()));
+ 
+     //Add weekday labels
+     for (int i=0; i<7; i++)
+@@ -318,6 +319,7 @@ void MainWindow::translateGUI()
+     ui->aboutaction->setText(mTr(ui->aboutaction->text()));
+     ui->gdateaction->setText(mTr(ui->gdateaction->text()));
+     ui->printaction->setText(mTr(ui->printaction->text()));
++    ui->todayaction->setText(mTr(ui->todayaction->text()));
+     ui->translateaction->setText(mTr(ui->translateaction->text()));
+     ui->exitaction->setText(mTr(ui->exitaction->text()));
+     ui->zmanimpanelaction->setText(mTr(ui->zmanimpanelaction->text()));
+@@ -927,6 +929,14 @@ void MainWindow::on_doublenextgYearBTN_c
+     showMonth(&current);
+ }
+ 
++void MainWindow::todayAction()
++{
++    hdate::Hdate today;
++    current.set_gdate(today.get_gday(), today.get_gmonth(), today.get_gyear());
++
++    showMonth(&current);
++}
++
+ void MainWindow::printSnap()
+ {
+     ui->dockWidget->setFeatures(QDockWidget::NoDockWidgetFeatures);
+--- origsrc/Luach/mainwindow.h	2010-03-05 06:40:47.000000000 -0600
++++ src/Luach/mainwindow.h	2010-06-07 04:55:04.558431100 -0500
+@@ -85,6 +85,7 @@ private slots:
+     void on_nextMonthBTN_clicked();
+     void on_backMonthBTN_clicked();
+ 
++    void todayAction();
+     void translateAction();
+ 
+     //Destroys all existing daybuttons
+--- origsrc/Luach/mainwindow.ui	2010-06-07 04:41:30.484868800 -0500
++++ src/Luach/mainwindow.ui	2010-06-07 05:18:27.959701100 -0500
+@@ -2268,6 +2268,7 @@
+     <property name="title">
+      <string>File</string>
+     </property>
++    <addaction name="todayaction"/>
+     <addaction name="printaction"/>
+     <addaction name="separator"/>
+     <addaction name="exitaction"/>
+@@ -3680,6 +3681,11 @@
+     <string>Quit</string>
+    </property>
+   </action>
++  <action name="todayaction">
++   <property name="text">
++    <string>Today</string>
++   </property>
++  </action>
+   <action name="gdateaction">
+    <property name="checkable">
+     <bool>true</bool>
+--- origsrc/Luach/mtranslator.cpp	2010-06-07 04:41:30.488869000 -0500
++++ src/Luach/mtranslator.cpp	2010-06-07 05:19:58.645888100 -0500
+@@ -57,6 +57,7 @@ void BuildHebrewTranslationList()
+     addToList("Quit", "יציאה");
+     addToList("Show Time List", "הצג זמנים");
+     addToList("Change Location", "שנה מיקום");
++    addToList("Today", "היום");
+ 
+     addToList("Settings", "הגדרות");
+     addToList("Display", "תצוגה");

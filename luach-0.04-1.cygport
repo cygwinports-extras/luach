@@ -1,0 +1,36 @@
+JAVA_CLASSPATH="zmanim.jar"
+inherit java qt4-qmake
+
+DESCRIPTION="Hebrew calendar with Zmanim"
+HOMEPAGE="http://code.google.com/p/luach/"
+SRC_URI="http://luach.googlecode.com/files/Luach-${PV}.tar.gz"
+SRC_DIR="Luach"
+
+PATCH_URI="
+	0.04-about-closebutton.patch
+	0.04-about-helpmenu.patch
+	0.04-about-typos.patch
+	0.04-changeloc-buttonicons.patch
+	0.04-qmake.patch
+	0.04-system-zmanim.patch
+	0.04-today.patch
+"
+
+DISTCLEANFILES="Makefile luach ui_*.h .locationconf"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	qt4_qmake_compile
+
+	cd ZmanimCLI
+	cygjavac -d . src/*.java
+	cygjar cf ../ZmanimCLI.jar *.class
+}
+
+src_install() {
+	cd ${B}
+	qt4_qmake_install
+
+	java_wrapper ZmanimCLI /usr/share/Luach/ZmanimCLI.jar ZmanimCLI
+}

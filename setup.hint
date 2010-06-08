@@ -1,0 +1,6 @@
+category: Religion
+requires: jamvm java-zmanim libgcc1 libhdate1 libQtCore4 libQtGui4 libstdc++6
+sdesc: "Hebrew calendar with Zmanim"
+ldesc: "Luach is a Hebrew calendar showing Hebrew dates, Holidays, and 
+halachic day times. The Hebrew dates are obtained from libhdate, and the 
+times by Kosher Java's Zmanim API."

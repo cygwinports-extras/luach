@@ -1,0 +1,32 @@
+The latest upstream ZmanimAPI fixes several bugs present in the included 
+version.
+
+--- origsrc/Luach/mainwindow.cpp	2010-03-28 14:36:24.000000000 -0500
++++ src/Luach/mainwindow.cpp	2010-06-07 00:22:01.473372300 -0500
+@@ -90,7 +90,7 @@ bool ShowGDate = true;
+ 
+ QString LOCATIONCONFPATH = ".locationconf";
+ QString DISPCONFPATH = ".dispconf";
+-QString ZMANIMCLIPATH = "ZmanimCLI.jar";
++QString ZMANIMCLIPATH = "ZmanimCLI.jar:/usr/share/java/zmanim.jar";
+ QString WINDOWSTATEPATH = ".windowstate";
+ 
+ QString LANG = "English";
+@@ -121,7 +121,7 @@ MainWindow::MainWindow(QWidget *parent)
+             toggleZmanimPanel(false);
+         }
+ 
+-        ZMANIMCLIPATH = "/usr/share/Luach/ZmanimCLI.jar";
++        ZMANIMCLIPATH = "/usr/share/Luach/ZmanimCLI.jar:/usr/share/java/zmanim.jar";
+ 
+         QDir dir;
+         dir.mkdir(QDir::homePath() + "/.Luach/");
+@@ -504,7 +504,7 @@ void MainWindow::updateLabels(mHdate *da
+ 
+     QString dstr = stringify(date->get_gyear()) + "/" + stringify(date->get_gmonth()) + "/" + stringify(date->get_gday());
+ 
+-    args << "-jar" << ZMANIMCLIPATH << "-d" << dstr << "-lat" << stringify(latitude) << "-lon" << stringify(longitude) << "-e" << stringify(elavation) << "-tz" << TimeZone;
++    args << "-classpath" << ZMANIMCLIPATH << "ZmanimCLI" << "-d" << dstr << "-lat" << stringify(latitude) << "-lon" << stringify(longitude) << "-e" << stringify(elavation) << "-tz" << TimeZone;
+     zmanimproc->start("java", args);
+ 
+     connect(zmanimproc, SIGNAL(readyReadStandardOutput()), this, SLOT(gotTimes()));

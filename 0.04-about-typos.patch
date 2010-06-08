@@ -1,0 +1,16 @@
+--- origsrc/Luach/about.cpp	2010-03-06 13:09:19.000000000 -0600
++++ src/Luach/about.cpp	2010-06-07 04:03:42.252133300 -0500
+@@ -58,10 +58,10 @@ About::About(QWidget *parent) :
+ 
+         text += "<br>";
+ 
+-        text += "This program comes with absolutly no Halachic warrenty. <br> Use it at your own risk.";
++        text += "This program comes with absolutely no Halachic warranty. <br> Use it at your own risk.";
+ 
+         text += "<br><br>";
+-        text += "Comments, complaints and gifts are greatlt welcome at -<br>";
++        text += "Comments, complaints and gifts are greatly welcome at -<br>";
+         text += "   moshe.wagner@gmail.com";
+     }
+ 
+

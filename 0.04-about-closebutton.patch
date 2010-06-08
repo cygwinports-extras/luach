@@ -1,0 +1,69 @@
+--- origsrc/Luach/about.cpp	2010-03-06 13:09:19.000000000 -0600
++++ src/Luach/about.cpp	2010-06-07 04:03:42.252133300 -0500
+@@ -86,6 +86,11 @@ void About::changeEvent(QEvent *e)
+     }
+ }
+ 
++void About::on_aboutClose_clicked()
++{
++    close();
++}
++
+ void About::on_label_linkActivated(QString link)
+ {
+     //Open the project's site in a browser
+--- origsrc/Luach/about.h	2009-08-02 13:43:04.000000000 -0500
++++ src/Luach/about.h	2010-06-07 04:04:00.260163300 -0500
+@@ -38,6 +38,7 @@ private:
+     Ui::About *m_ui;
+ 
+ private slots:
++    void on_aboutClose_clicked();
+     void on_label_linkActivated(QString link);
+ };
+ 
+--- origsrc/Luach/about.ui	2009-09-30 15:22:26.000000000 -0500
++++ src/Luach/about.ui	2010-06-07 04:20:30.162782500 -0500
+@@ -7,7 +7,7 @@
+     <x>0</x>
+     <y>0</y>
+     <width>400</width>
+-    <height>112</height>
++    <height>188</height>
+    </rect>
+   </property>
+   <property name="windowTitle">
+@@ -16,7 +16,7 @@
+   <property name="layoutDirection">
+    <enum>Qt::RightToLeft</enum>
+   </property>
+-  <layout class="QHBoxLayout" name="horizontalLayout">
++  <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+@@ -24,6 +24,23 @@
+      </property>
+     </widget>
+    </item>
++   <item>
++    <widget class="QPushButton" name="aboutClose">
++     <property name="sizePolicy">
++      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
++       <horstretch>0</horstretch>
++       <verstretch>0</verstretch>
++      </sizepolicy>
++     </property>
++     <property name="text">
++      <string>OK</string>
++     </property>
++     <property name="icon">
++      <iconset>
++       <normaloff>:/trolltech/styles/commonstyle/images/standardbutton-close-16.png</normaloff>:/trolltech/styles/commonstyle/images/standardbutton-close-16.png</iconset>
++     </property>
++    </widget>
++   </item>
+   </layout>
+  </widget>
+  <resources/>
+
