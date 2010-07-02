@@ -1,19 +1,16 @@
 JAVA_CLASSPATH="zmanim.jar"
-inherit java qt4-qmake
+SVN_URI="http://luach.googlecode.com/svn/trunk/"
+SVN_MODULE=${PN}
+inherit java qt4-qmake svn
 
 DESCRIPTION="Hebrew calendar with Zmanim"
 HOMEPAGE="http://code.google.com/p/luach/"
-SRC_URI="http://luach.googlecode.com/files/Luach-${PV}.tar.gz"
-SRC_DIR="Luach"
+#SRC_URI="http://luach.googlecode.com/files/Luach-${PV}.tar.gz"
+#SRC_DIR="Luach"
 
 PATCH_URI="
-	0.04-about-closebutton.patch
-	0.04-about-helpmenu.patch
-	0.04-about-typos.patch
-	0.04-changeloc-buttonicons.patch
-	0.04-qmake.patch
-	0.04-system-zmanim.patch
-	0.04-today.patch
+	0.07-buttonicons.patch
+	0.07-system-zmanim.patch
 "
 
 DISTCLEANFILES="Makefile luach ui_*.h .locationconf"
