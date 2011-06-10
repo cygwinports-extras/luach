@@ -10,24 +10,7 @@ HOMEPAGE="http://code.google.com/p/luach/"
 
 PATCH_URI="
 	0.07-buttonicons.patch
-	0.07-system-zmanim.patch
+	0.081-jardir.patch
 "
 
 DISTCLEANFILES="Makefile luach ui_*.h .locationconf"
-
-src_compile() {
-	lndirs
-	cd ${B}
-	qt4_qmake_compile
-
-	cd ZmanimCLI
-	cygjavac -d . src/*.java
-	cygjar cf ../ZmanimCLI.jar *.class
-}
-
-src_install() {
-	cd ${B}
-	qt4_qmake_install
-
-	java_wrapper ZmanimCLI /usr/share/Luach/ZmanimCLI.jar ZmanimCLI
-}

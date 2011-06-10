@@ -1,0 +1,22 @@
+--- origsrc/luach/Luach.pro	2011-06-10 17:13:01.000000000 -0500
++++ src/luach/Luach.pro	2011-06-10 17:14:58.398080400 -0500
+@@ -33,7 +33,7 @@ TRANSLATIONS = Hebrew.ts
+ target.path = /usr/bin/
+ 
+ # Install ZmanimCLI
+-zmanim.path = /usr/bin/
++zmanim.path = /usr/share/java/
+ zmanim.files = ZmanimCLI.jar
+ 
+ # Install zanimcli script
+--- origsrc/luach/zmanimcli	2011-06-10 17:13:01.000000000 -0500
++++ src/luach/zmanimcli	2011-06-10 17:14:44.198856100 -0500
+@@ -19,7 +19,7 @@ fi
+ 
+ 
+ #Try to locate ZmanimCLI.jar
+-ZmanimCLIPATH=`whereis ZmanimCLI.jar | cut -d ' ' -f2`
++ZmanimCLIPATH=/usr/share/java/ZmanimCLI.jar
+ 
+ if [ "$ZmanimCLIPATH" = "" ]
+ then
