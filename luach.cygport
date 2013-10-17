@@ -1,0 +1,23 @@
+JAVA_CLASSPATH="zmanim.jar"
+SVN_URI="http://luach.googlecode.com/svn/trunk/"
+SVN_MODULE="luach"
+SVN_REV=50
+inherit java qt4-qmake svn
+
+NAME="luach"
+VERSION=0.082
+RELEASE=1
+CATEGORY="Religion"
+SUMMARY="Hebrew calendar with Zmanim"
+DESCRIPTION="Luach is a Hebrew calendar showing Hebrew dates, Holidays, and
+halachic day times. The Hebrew dates are obtained from libhdate, and the times
+by Kosher Java's Zmanim API."
+REQUIRES="jamvm"
+HOMEPAGE="http://code.google.com/p/luach/"
+#SRC_URI="http://luach.googlecode.com/files/Luach-${PV}.tar.gz"
+#SRC_DIR="Luach"
+PATCH_URI="
+	0.081-jardir.patch
+"
+
+DISTCLEANFILES="Makefile luach ui_*.h .locationconf"
